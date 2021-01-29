@@ -1,0 +1,20 @@
+<?php
+namespace core;
+
+
+use \src\Config;
+
+class Database {
+    
+    private static $_pdo;
+
+    protected static function getInstance(){
+        if(!isset(self::$_pdo)) {
+            self::$_pdo = new \PDO(Config::DB_DRIVER.":dbname=".Config::DB_DATABASE.";host=".Config::DB_HOST, Config::DB_USER, Config::DB_PASS);
+        }
+        return self::$_pdo;
+    }
+    public function __construct() { }
+    public function __clone() { }
+    public function __wakeup() { }
+}
