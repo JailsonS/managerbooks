@@ -4,9 +4,9 @@ namespace src;
 
 class Config 
 {
-    const BASE_DIR = '/techlead/public';
+    const BASE_DIR = '/managerbooks/public';
     
-    const ERROR_CONTROLLER = '';
+    const ERROR_CONTROLLER = '404';
     const DEFAULT_ACTION = '';
 
     const DB_DRIVER = '';
