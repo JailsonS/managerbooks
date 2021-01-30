@@ -11,10 +11,16 @@
 </head>
 
 <body>
+
+    <?php 
+        if($flash) {
+            echo $flash;
+        } 
+    ?>
     
     <!-- content section -->
     <main class="form-signin">
-        <div class="form-box-title">Book Manager</div>
+        <div class="form-box-title"><a href="<?=$base?>/">Book Manager</a></div>
         <div class="form-box">
             <form method="POST">
                 <div class="form-group">
@@ -28,6 +34,11 @@
                 <div class="form-group">
                     <label for="passwordInput">Senha</label>
                     <input name="password" type="password" class="form-control" id="passwordInput">
+                </div>
+
+                <div class="form-group">
+                    <label for="passwordInput">Confirmar senha</label>
+                    <input name="passwordConfirm" type="password" class="form-control" id="passwordInput">
                 </div>
 
                 <button type="submit" class="btn btn-primary">Cadastrar</button>

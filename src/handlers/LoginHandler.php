@@ -54,18 +54,22 @@ class LoginHandler
         return $user ? true : false;
     }
 
-    public static function addUser($name, $email, $password, $birthdate)
+    public static function addUser($name, $email, $password)
     {
         $user = new User();
         $hash = password_hash($password, PASSWORD_DEFAULT);
         $token = JwtHandler::create(['id_user' => $user->id]);
 
+        # default permission
+        $perm = 1;
+
         $user->insert([
             'name' => $name,
             'email' => $email,
             'password' => $hash,
-            'birthdate' => $birthdate,
-            'token' => $token
+            'token' => $token,
+            'perm' => $perm,
+            'created_at' => date('Y-m-d')
         ])->exec();
 
         return $token;

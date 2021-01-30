@@ -9,11 +9,11 @@ class Config
     const ERROR_CONTROLLER = '404';
     const DEFAULT_ACTION = '';
 
-    const DB_DRIVER = '';
-    const DB_DATABASE = '';
-    const DB_HOST = '';
-    const DB_USER = '';
+    const DB_DRIVER = 'mysql';
+    const DB_DATABASE = 'techlead';
+    const DB_HOST = 'localhost';
+    const DB_USER = 'root';
     const DB_PASS = '';
 
-    const JWT_KEY = 'fdsjfksdljfklsjdfkljskdl';
+    const JWT_KEY = 'z6Ct_d2Wy0ZcZZVUYD3beI5ZCSsFrR6-f3ZDyn_MW00';
 }

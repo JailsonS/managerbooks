@@ -30,7 +30,7 @@ class LoginController extends Controller
         # check
         if(!$email || !$password){
             $_SESSION['flash'] = 'E-mail e/ou senha incorretos!';
-            $this->redirect('/login');
+            $this->redirect('/');
         }
 
         # if credentials ok, create token
@@ -39,7 +39,7 @@ class LoginController extends Controller
         # check token
         if(!$token){
             $_SESSION['flash'] = 'E-mail e/ou senha incorretos!';
-            $this->redirect('/login');
+            $this->redirect('/');
         }
 
         # save token in section
@@ -69,38 +69,27 @@ class LoginController extends Controller
         $name = filter_input(INPUT_POST, 'name');
         $email = filter_input(INPUT_POST, 'email', FILTER_VALIDATE_EMAIL);
         $password = filter_input(INPUT_POST, 'password');
-        $birthdate = filter_input(INPUT_POST, 'birthdate');
+        $passwordConfirm = filter_input(INPUT_POST, 'passwordConfirm');
         
         # check filled
-        if(!$name || !$email || !$password || !$birthdate){
+        if(!$name || !$email || !$password || !$passwordConfirm){
             $_SESSION['flash'] = 'Preencha todos os campos!';
-            $this->redirect('/register');
+            $this->redirect('/signup');
         }
 
-        $birthdate = explode('/', $birthdate);
-
-        # check date
-        if(count($birthdate) != 3){
-            $_SESSION['flash'] = 'Data de nascimento inválida !';
-            $this->redirect('/register');
-        }
-
-        $birthdate = $birthdate[2].'-'.$birthdate[1].'-'.$birthdate[0];
-
-        # check valid date
-        if(strtotime($birthdate) === false) {
-            $_SESSION['flash'] = 'Data de nascimento inválida!';
-            $this->redirect('/register');
+        if($password != $passwordConfirm){
+            $_SESSION['flash'] = 'As senhas devem ser iguais!';
+            $this->redirect('/signup');
         }
 
         # check email
         if(LoginHandler::emailExists($email)){
             $_SESSION['flash'] = 'Este e-mail já está cadastrado!';
-            $this->redirect('/register');
+            $this->redirect('/signup');
         }
 
         # create user and token
-        $token = LoginHandler::addUser($name, $email, $password, $birthdate);
+        $token = LoginHandler::addUser($name, $email, $password);
 
         $_SESSION['token'] = $token;
 

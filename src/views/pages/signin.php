@@ -11,12 +11,16 @@
 </head>
 
 <body>
-    
+    <?php 
+        if($flash) {
+            echo $flash;
+        } 
+    ?>
     <!-- content section -->
     <main class="form-signin">
-        <div class="form-box-title">Book Manager</div>
+        <div class="form-box-title"><a href="<?=$base?>/">Book Manager</a></div>
         <div class="form-box">
-            <form method="POST">
+            <form method="POST" action="<?=$base?>/">
                 <div class="form-group">
                     <label for="emailInput">E-mail</label>
                     <input name="email" type="email" class="form-control" id="emailInput" aria-describedby="emailHelp">
@@ -28,7 +32,7 @@
 
                 <button type="submit" class="btn btn-primary">Login</button>
                 <hr>
-                <small><a href="#">Cadastre-se aqui!</a></small>
+                <small><a href="<?=$base?>/signup">Cadastre-se aqui!</a></small>
             </form>
         </div>
     </main>
