@@ -5,7 +5,7 @@
     <title>Techlead</title>
 
     <!-- Bootstrap core CSS -->
-    <link href=" <?=$base?>/assets/css/bootstrap.min.css" rel="stylesheet">
+    <link href="<?=$base?>/assets/css/bootstrap.min.css" rel="stylesheet">
     <link href="<?=$base?>/assets/css/style.css" rel="stylesheet">
 
 </head>
@@ -16,9 +16,9 @@
     <main class="form-signin">
         <div class="form-box-title">Book Manager</div>
         <div class="form-box">
-            <form>
+            <form method="POST">
                 <div class="form-group">
-                    <label for="emailInput">Email</label>
+                    <label for="emailInput">E-mail</label>
                     <input name="email" type="email" class="form-control" id="emailInput" aria-describedby="emailHelp">
                 </div>
                 <div class="form-group">
