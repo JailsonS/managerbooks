@@ -30,17 +30,18 @@
 
         <!-- content section -->
         <div class="main-content">
+
             <!-- nav items -->
             <nav class="item">
                 <ul>
-                    <li class="link:activated">
+                    <li>
                         <a href="" style="text-decoration: none;">
                             <img width="35" height="35" class="menu-opener-icon" src="<?=$base?>/assets/media/icons/note.png" />
                             Meus Cadastros
                         </a>
                         
                     </li>
-                    <li>
+                    <li class="link:activated">
                         <a href="" style="text-decoration: none;">
                             <img width="35" height="35" class="menu-opener-icon" src="<?=$base?>/assets/media/icons/books.png" />
                             Biblioteca
@@ -51,27 +52,11 @@
             
             <!-- content -->
             <section class="item">
-                <hr>
-                <button id="btn-register" type="button" class="btn btn-primary" data-toggle="modal" data-target="#registerBook">
-                    <div style="font-size: 30px;">+</div>
-                    <div>Novo Cadastro</div>
-                </button>
-                <!-- this is the modal form -->
-                <?= $render('register-book-modal') ?>
-
-                <hr>
-                <div class="book-list-area">
-                    <?= $render('item-book', ['title' => 'Harry Potter'])?>
-                    <?= $render('item-book', ['title' => 'Querido John'])?>
-                </div>
+                SECTION
             </section>
         </div>
 
         <footer class="item">footer</footer>
     </div>
-
-    <!-- JS here! -->
-    <script src="<?=$base?>/assets/js/jquery-3.5.1.min.js"></script>
-    <script src="<?=$base?>/assets/js/bootstrap.min.js"></script>
 
 <?= $render('footer')?>

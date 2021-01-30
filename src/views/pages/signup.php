@@ -6,12 +6,10 @@
 
     <!-- Bootstrap core CSS -->
     <link href="<?=$base?>/assets/css/bootstrap.min.css" rel="stylesheet">
-    <link href="<?=$base?>/assets/css/style.css" rel="stylesheet">
-
+    <link href="<?=$base?>/assets/css/style-login.css" rel="stylesheet">
 </head>
 
 <body>
-
     <?php 
         if($flash) {
             echo $flash;

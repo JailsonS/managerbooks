@@ -5,7 +5,7 @@ use \core\Controller;
 use \src\handlers\LoginHandler;
 
 
-class HomeController extends Controller
+class BookController extends Controller
 {
 
     private $loggedUser;
@@ -20,12 +20,7 @@ class HomeController extends Controller
         }
     }
 
-    public function index()
-    {
-
-        
-
-
-        $this->render('home');
+    public function add()
+    {  
     }
 }

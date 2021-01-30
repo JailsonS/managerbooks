@@ -1,7 +1,6 @@
 <?php
 namespace src\handlers;
 
-
 use \src\models\User;
 use \src\handlers\JwtHandler;
 
@@ -60,7 +59,8 @@ class LoginHandler
         $hash = password_hash($password, PASSWORD_DEFAULT);
         $token = JwtHandler::create(['id_user' => $user->id]);
 
-        # default permission
+        # 1 - client profile (default permission)
+        # 2 - admin profile
         $perm = 1;
 
         $user->insert([

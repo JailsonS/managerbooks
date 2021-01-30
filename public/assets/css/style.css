@@ -1,37 +1,141 @@
-body {
-    background-image: url('../media/bg.png');
-    background-repeat: round;
-    background-size: auto;
-    height: 100%;
+
+.main {
+    background-color: rgb(241, 241, 241);
+    display: grid;
+    gap: 10px;
+    grid-template-areas: 
+        'header'
+        'menu'
+        'content'
+        'footer'
+    ;
 }
 
-main {
-    height: 100vh;
+.main-content {
+    width: 80%;
+    margin: auto;
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+
+.item {
+    padding: 20px;
+    display: flex;
+}
+
+header {
+    grid-area: 'header';
+    background-color: rgb(255, 255, 255);
+}
+
+nav {
+    grid-area: 'menu';
+    border-radius: 10px;
+    margin-bottom: 10px;
+}
+
+section {
+    grid-area: 'content';
+    display: flex;
+    flex-direction: column;
+    border-radius: 10px;
+    background-color: rgb(255, 255, 255);
+}
+
+footer {
+    grid-area: 'footer';
+    background-color: rgb(221, 221, 221);
+    height: 250px;
+}
+
+header .header-left {
+    width: 50%;
+}
+
+header .header-right {
+    width: 50%;
+}
+
+header .header-left ul {
+    list-style: none;
+    display: flex;
+    margin:0px;
+    padding: 0px;
+}
+
+header .header-right ul {
+    list-style: none;
+    display: flex;
+    justify-content: flex-end;
+    margin:0px;
+}
+
+.menu-img {
+    width: 64px;
+    height: 40px;
+    display: flex;
+    -webkit-box-align: center;
+    align-items: center;
+    justify-content: center;
+}
+
+nav.item {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    display: flex;
+}
+
+nav.item ul {
+    display: flex;
+    list-style: none;
+    margin: 0;
+    margin-left: 30px;
+    margin-right: 30px;
+    padding: 0;
+}
+
+nav.item ul li {
+    display: flex;
+    align-items: center;
+    margin-left: 5px;
+    margin-right: 5px;
+    padding-right: 20px;
+    padding-left: 20px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+}
+
+nav.item ul li[class*="link:activated"] {
+    background-color: #FFF;
+}
+
+nav.item ul li:hover {
+    background-color: #FFF;
+}
+
+.header-page nav ul li:visited {
+    background-color: #FFF;
+}
+
+#btn-register {
+    width: fit-content;
+    height: 80px;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
 }
 
-main .form-signin {
-    max-width: 330px;
+section .card {
+    margin-right: 25px;
+    margin-bottom: 25px;
 }
 
-main .form-box-title {
-    margin: 10px;
-    margin-bottom: 30px;
-    font-size: larger;
-    color: rgba(2, 2, 2, 0.432);
-    font-style: italic;
-    font-size: xx-large;
-    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
-}
-
-main .form-box {
-    -webkit-box-shadow: 0 0 10px #3494d46c;
-    min-width: 300px;
-    height: fit-content;
-    border-radius: 10px;
-    background-color: #FFF;
-    padding: 20px;
+section .book-list-area {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
 }

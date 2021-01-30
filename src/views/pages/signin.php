@@ -6,7 +6,7 @@
 
     <!-- Bootstrap core CSS -->
     <link href="<?=$base?>/assets/css/bootstrap.min.css" rel="stylesheet">
-    <link href="<?=$base?>/assets/css/style.css" rel="stylesheet">
+    <link href="<?=$base?>/assets/css/style-login.css" rel="stylesheet">
 
 </head>
 
@@ -40,5 +40,5 @@
     <!-- JS here! -->
     <script src="<?=$base?>/assets/js/jquery-3.5.1.min.js"></script>
     <script src="<?=$base?>/assets/js/bootstrap.min.js"></script>
-</body>
-</html>
+    
+<?= $render('footer')?>
