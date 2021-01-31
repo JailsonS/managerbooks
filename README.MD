@@ -9,3 +9,14 @@
 * ADMIN - ADD, PUT, DELETE, READ
 * CLIENT - ADD, PUT, DELETE, READ para os registros cadastrados pelo mesmo usuário do tipo CLIENT
 * CLIENT - READ para os registros cadastrados por outros usuários
+
+#### Stack Utilizada
+* PHP puro para o backend versão 8.0.0
+* HTML, CSS, JS e Bootstrap para o frontend
+* Banco de dados MYSQL
+
+#### Deploy da aplicação
+* A aplicação roda em ambiente APACHE, software XAMPP com suporte para versão 8.0.0
+* Salvar a aplicação no dir default XAMPP C:\xampp\htdocs (caso WINDOWS)
+* Root url da aplicação 'managerbooks/public'
+* Arquivo de configurações da aplicação 'src/Config.php'
