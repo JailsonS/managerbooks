@@ -103,7 +103,7 @@ class BookController extends Controller
                 # check user permission
                 if(PermissionHandler::permissionForBook($this->loggedUser->id, $bookId) == false) {
                     $_SESSION['flash'] = 'Você não tem permissão para esta operação!';
-                    $this->redirect($request['url']);
+                    $this->redirect('/'.$request['url']);
                 }
 
                 # if so, update data
@@ -118,7 +118,7 @@ class BookController extends Controller
                     ->exec();
         
                     $_SESSION['flash'] = 'Dados cadastrados com sucesso!';
-                    $this->redirect($request['url']);
+                    $this->redirect('/'.$request['url']);
         
                 } catch(PDOException $e) {
                     $_SESSION['flash'] = 'Falha no cadastro: '.$e;
@@ -139,11 +139,11 @@ class BookController extends Controller
                     ->exec();
         
                     $_SESSION['flash'] = 'Dados cadastrados com sucesso!';
-                    $this->redirect($request['url']); # need to be dynamic
+                    $this->redirect('/'.$request['url']); # need to be dynamic
         
                 } catch(PDOException $e) {
                     $_SESSION['flash'] = 'Falha no cadastro: '.$e;
-                    $this->redirect($request['url']); # need to be dynamic
+                    $this->redirect('/'.$request['url']); # need to be dynamic
                 }
                 break;
         }
@@ -157,15 +157,18 @@ class BookController extends Controller
         # check permissions
         match($this->loggedUser->perm) {
             '1' => $this->deleteBookClient($this->loggedUser->id, $bookId, $request['url']),
-            '2' => $this->deleteBookAdmin($bookId)
+            '2' => $this->deleteBookAdmin($bookId, $request['url'])
         };
 
     }
 
-    private function deleteBookAdmin($bookId)
+    private function deleteBookAdmin($bookId, $url)
     {
         $bookInstance = new Book();
         $bookInstance->delete('books.id', '=', $bookId)->exec();
+
+        $_SESSION['flash'] = 'Operação realizada com sucesso!';
+        $this->redirect('/'.$url); # need to be dynamic
     }
 
     private function deleteBookClient($userId, $bookId, $url)
