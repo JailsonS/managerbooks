@@ -59,9 +59,11 @@
 <?= $render('edit-book-modal', [
     'book' => $book,
     'id_modal' =>  $id_modal,
+    'url' => $url
 ]) ?> 
 
 <?= $render('delete-book-modal', [
     'book' => $book,
     'id_modal' =>  $id_modal,
+    'url' => $url
 ]) ?> 

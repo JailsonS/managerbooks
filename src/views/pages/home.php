@@ -79,7 +79,8 @@
                         <?= $render('item-book', [
                             'book' => $book,
                             'id_modal' =>  $book->id.'_my_tab',
-                            'loggedUser' => $loggedUser
+                            'loggedUser' => $loggedUser,
+                            'url' => $url
                         ]) ?>           
                     <?php endforeach; ?>
                 </div>

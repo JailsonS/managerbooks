@@ -12,7 +12,7 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-info" data-dismiss="modal">Não</button>
-                <a href="<?=$base?>/delete-book/<?php echo $book->id; ?>" type="button" class="btn btn-danger">Sim</a>
+                <a href="<?=$base?>/delete-book/<?php echo $book->id.$url; ?>" type="button" class="btn btn-danger">Sim</a>
             </div>
         </div>
     </div>

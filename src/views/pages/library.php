@@ -53,6 +53,17 @@
             <!-- content -->
             <section class="item">
                 <!-- list book area -->
+
+                <!-- check flahs messages -->
+                <?php if($flash):?>
+                    <div class="alert alert-primary" role="alert">
+                        <?php echo $flash; ?>
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                <?php endif; ?>
+
                 <div class="book-list-area">
                     <?php foreach ($books as $book): ?>
 
@@ -60,6 +71,7 @@
                             'book' => $book,
                             'loggedUser' => $loggedUser,
                             'id_modal' =>  $book->id.'_list_tab',
+                            'url' => $url
                         ]) ?>
                   
                     <?php endforeach; ?>

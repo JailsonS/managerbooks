@@ -17,5 +17,5 @@ $router->get('/home', 'HomeController@index');
 
 $router->post('/add-book', 'BookController@addBook');
 $router->get('/library', 'BookController@list');
-$router->post('/edit-book/{id}', 'BookController@editBook');
-$router->get('/delete-book/{id}', 'BookController@deleteBook');
+$router->post('/edit-book/{id}/{url}', 'BookController@editBook'); // additional param url to get back to the previus route with flash message
+$router->get('/delete-book/{id}/{url}', 'BookController@deleteBook'); // additional param url to get back to the previus route with flash message

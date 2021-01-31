@@ -2,6 +2,7 @@
 namespace src\controllers;
 
 use \core\Controller;
+use \core\Request;
 use PDOException;
 use \src\handlers\LoginHandler;
 use \src\handlers\PermissionHandler;
@@ -21,6 +22,31 @@ class BookController extends Controller
         if($this->loggedUser === false){
             $this->redirect('/');
         }
+    }
+
+    public function list()
+    {
+        # define a flash message to be displayed
+        $flash = '';
+
+        if(!empty($_SESSION['flash'])){
+            $flash = $_SESSION['flash'];
+            $_SESSION['flash'] = '';
+        }
+
+        # it will be populated
+        $data = [];
+
+        $bookInstance = new Book();
+        $books = $bookInstance->select()->get();
+
+        # fill data
+        $data['flash'] = $flash;
+        $data['books'] = $books;
+        $data['loggedUser'] = $this->loggedUser;
+        $data['url'] = Request::getUrl();
+
+        $this->render('library', $data);
     }
 
     public function addBook()
@@ -77,7 +103,7 @@ class BookController extends Controller
                 # check user permission
                 if(PermissionHandler::permissionForBook($this->loggedUser->id, $bookId) == false) {
                     $_SESSION['flash'] = 'Você não tem permissão para esta operação!';
-                    $this->redirect('/home');
+                    $this->redirect($request['url']);
                 }
 
                 # if so, update data
@@ -92,11 +118,11 @@ class BookController extends Controller
                     ->exec();
         
                     $_SESSION['flash'] = 'Dados cadastrados com sucesso!';
-                    $this->redirect('/home');
+                    $this->redirect($request['url']);
         
                 } catch(PDOException $e) {
                     $_SESSION['flash'] = 'Falha no cadastro: '.$e;
-                    $this->redirect('/home');
+                    $this->redirect($request['url']);
                 }
 
 
@@ -113,11 +139,11 @@ class BookController extends Controller
                     ->exec();
         
                     $_SESSION['flash'] = 'Dados cadastrados com sucesso!';
-                    $this->redirect('/home');
+                    $this->redirect($request['url']); # need to be dynamic
         
                 } catch(PDOException $e) {
                     $_SESSION['flash'] = 'Falha no cadastro: '.$e;
-                    $this->redirect('/home');
+                    $this->redirect($request['url']); # need to be dynamic
                 }
                 break;
         }
@@ -130,36 +156,10 @@ class BookController extends Controller
 
         # check permissions
         match($this->loggedUser->perm) {
-            '1' => $this->deleteBookClient($this->loggedUser->id, $bookId),
+            '1' => $this->deleteBookClient($this->loggedUser->id, $bookId, $request['url']),
             '2' => $this->deleteBookAdmin($bookId)
         };
 
-    }
-
-    public function list()
-    {
-        # define a flash message to be displayed
-        $flash = '';
-
-        if(!empty($_SESSION['flash'])){
-            $flash = $_SESSION['flash'];
-            $_SESSION['flash'] = '';
-        }
-
-        # it will be populated
-        $data = [];
-
-        $bookInstance = new Book();
-        $books = $bookInstance->select()->get();
-
-
-
-        # fill data
-        $data['flash'] = $flash;
-        $data['books'] = $books;
-        $data['loggedUser'] = $this->loggedUser;
-
-        $this->render('library', $data);
     }
 
     private function deleteBookAdmin($bookId)
@@ -168,17 +168,17 @@ class BookController extends Controller
         $bookInstance->delete('books.id', '=', $bookId)->exec();
     }
 
-    private function deleteBookClient($userId, $bookId)
+    private function deleteBookClient($userId, $bookId, $url)
     {
-        if(PermissionHandler::permissionForBook($userId, $bookId) == false) {
+        if(PermissionHandler::permissionForBook($userId, $bookId, $url) == false) {
             $_SESSION['flash'] = 'Você não tem permissão para esta operação!';
-            $this->redirect('/home');
+            $this->redirect('/'.$url); # need to be dynamic
         } else {
             $bookInstance = new Book();
             $bookInstance->delete('books.id', '=', $bookId)->exec();
             
             $_SESSION['flash'] = 'Operação realizada com sucesso!';
-            $this->redirect('/home');
+            $this->redirect('/'.$url); # need to be dynamic
         }        
     }
 }

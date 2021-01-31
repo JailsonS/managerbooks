@@ -10,7 +10,7 @@
             </div>
             <div class="modal-body">
 
-                <form method="POST" action="<?=$base?>/edit-book/<?php echo $book->id; ?>">
+                <form method="POST" action="<?=$base?>/edit-book/<?php echo $book->id.$url; ?>">
                     <div class="form-group">
                         <label for="title">Título do livro</label>
                         <input name="title" type="text" class="form-control" value="<?php echo $book->title; ?>">

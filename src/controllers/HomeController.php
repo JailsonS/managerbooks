@@ -4,6 +4,7 @@ namespace src\controllers;
 use \core\Controller;
 use \src\handlers\LoginHandler;
 use \src\models\Book;
+use \core\Request;
 
 
 class HomeController extends Controller
@@ -43,6 +44,7 @@ class HomeController extends Controller
         $data['flash'] = $flash;
         $data['books'] = $books;
         $data['loggedUser'] = $this->loggedUser;
+        $data['url'] = Request::getUrl();
 
         $this->render('home', $data);
     }
