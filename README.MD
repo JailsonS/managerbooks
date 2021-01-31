@@ -20,3 +20,10 @@
 * Salvar a aplicação no dir default XAMPP C:\xampp\htdocs (caso WINDOWS)
 * Root url da aplicação 'managerbooks/public'
 * Arquivo de configurações da aplicação 'src/Config.php'
+
+#### Banco de dados
+* Criar um banco de dados vazio mysql com o nome 'techlead'
+* Importar arquivo 'db_dump.SQL' para criar tabelas e relacionamentos
+* Usuário admin é criado assim que a aplicação é acessada a primeira vez
+* Credenciais do admin estão salvas no arquivo 'src/Config.php'
+
