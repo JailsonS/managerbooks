@@ -35,14 +35,14 @@
             <nav class="item">
                 <ul>
                     <li>
-                        <a href="" style="text-decoration: none;">
+                        <a href="<?=$base?>/home" style="text-decoration: none;">
                             <img width="35" height="35" class="menu-opener-icon" src="<?=$base?>/assets/media/icons/note.png" />
                             Meus Cadastros
                         </a>
                         
                     </li>
                     <li class="link:activated">
-                        <a href="" style="text-decoration: none;">
+                        <a href="<?=$base?>/library" style="text-decoration: none;">
                             <img width="35" height="35" class="menu-opener-icon" src="<?=$base?>/assets/media/icons/books.png" />
                             Biblioteca
                         </a>
@@ -52,11 +52,26 @@
             
             <!-- content -->
             <section class="item">
-                SECTION
+                <!-- list book area -->
+                <div class="book-list-area">
+                    <?php foreach ($books as $book): ?>
+
+                        <?= $render('item-book', [
+                            'book' => $book,
+                            'loggedUser' => $loggedUser,
+                            'id_modal' =>  $book->id.'_list_tab',
+                        ]) ?>
+                  
+                    <?php endforeach; ?>
+                </div>
             </section>
         </div>
 
         <footer class="item">footer</footer>
     </div>
+
+    <!-- JS here! -->
+    <script src="<?=$base?>/assets/js/jquery-3.5.1.min.js"></script>
+    <script src="<?=$base?>/assets/js/bootstrap.min.js"></script>
 
 <?= $render('footer')?>

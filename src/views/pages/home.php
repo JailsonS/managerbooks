@@ -41,7 +41,7 @@
                         
                     </li>
                     <li>
-                        <a href="" style="text-decoration: none;">
+                        <a href="<?=$base?>/library" style="text-decoration: none;">
                             <img width="35" height="35" class="menu-opener-icon" src="<?=$base?>/assets/media/icons/books.png" />
                             Biblioteca
                         </a>
@@ -52,17 +52,36 @@
             <!-- content -->
             <section class="item">
                 <hr>
+                <!-- check flahs messages -->
+                <?php if($flash):?>
+                    <div class="alert alert-primary" role="alert">
+                        <?php echo $flash; ?>
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                <?php endif; ?>
+                
+                <!-- register button -->
                 <button id="btn-register" type="button" class="btn btn-primary" data-toggle="modal" data-target="#registerBook">
                     <div style="font-size: 30px;">+</div>
                     <div>Novo Cadastro</div>
                 </button>
+
                 <!-- this is the modal form -->
                 <?= $render('register-book-modal') ?>
 
                 <hr>
+                
+                <!-- list book area -->
                 <div class="book-list-area">
-                    <?= $render('item-book', ['title' => 'Harry Potter'])?>
-                    <?= $render('item-book', ['title' => 'Querido John'])?>
+                    <?php foreach ($books as $book): ?>
+                        <?= $render('item-book', [
+                            'book' => $book,
+                            'id_modal' =>  $book->id.'_my_tab',
+                            'loggedUser' => $loggedUser
+                        ]) ?>           
+                    <?php endforeach; ?>
                 </div>
             </section>
         </div>
