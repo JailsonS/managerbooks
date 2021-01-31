@@ -18,7 +18,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `techlead` utf-8 general_ci
+-- Database: `techlead` utf-8 general_ci NECESSÁRIO CRIAR UM BANCO DE DADOS VAZIO COM O NOME `techlead`
 --
 
 -- --------------------------------------------------------
