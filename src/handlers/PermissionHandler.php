@@ -1,9 +1,7 @@
 <?php
 namespace src\handlers;
 
-use \src\models\User;
 use \src\models\Book;
-use \src\handlers\JwtHandler;
 
 class PermissionHandler 
 {

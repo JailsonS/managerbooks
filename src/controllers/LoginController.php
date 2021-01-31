@@ -16,6 +16,9 @@ class LoginController extends Controller
             $_SESSION['flash'] = '';
         }
 
+        # it check if an admin user exists, if no, create one
+        LoginHandler::createDefaultAdmin();
+
         $this->render('signin', [
             'flash' => $flash
         ]);

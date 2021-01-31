@@ -16,4 +16,7 @@ class Config
     const DB_PASS = '';
 
     const JWT_KEY = 'z6Ct_d2Wy0ZcZZVUYD3beI5ZCSsFrR6-f3ZDyn_MW00';
+
+    const ADMIN_USER_EMAIL = 'admin@gmail.com'; // DEFAULT ADMIN USER, AT LEAST ONE
+    const ADMIN_USER_PASSWORD = '123456';
 }

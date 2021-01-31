@@ -46,6 +46,13 @@ class HomeController extends Controller
         $data['loggedUser'] = $this->loggedUser;
         $data['url'] = Request::getUrl();
 
-        $this->render('home', $data);
+        switch($this->loggedUser->perm){
+            case '1':
+                $this->render('home', $data);
+                break;
+            case '2':
+                $this->render('library', $data);
+                break;
+        }
     }
 }

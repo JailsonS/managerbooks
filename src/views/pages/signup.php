@@ -10,11 +10,15 @@
 </head>
 
 <body>
-    <?php 
-        if($flash) {
-            echo $flash;
-        } 
-    ?>
+    <!-- check flahs messages -->
+    <?php if($flash):?>
+        <div class="alert alert-primary" role="alert">
+            <?php echo $flash; ?>
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+    <?php endif; ?>
     
     <!-- content section -->
     <main class="form-signin">

@@ -34,13 +34,16 @@
             <!-- nav items -->
             <nav class="item">
                 <ul>
+
+                <?php if($loggedUser->perm == 1):?>
                     <li>
                         <a href="<?=$base?>/home" style="text-decoration: none;">
                             <img width="35" height="35" class="menu-opener-icon" src="<?=$base?>/assets/media/icons/note.png" />
                             Meus Cadastros
                         </a>
-                        
                     </li>
+                <?php endif;?>
+
                     <li class="link:activated">
                         <a href="<?=$base?>/library" style="text-decoration: none;">
                             <img width="35" height="35" class="menu-opener-icon" src="<?=$base?>/assets/media/icons/books.png" />
@@ -62,6 +65,19 @@
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
+                <?php endif; ?>
+
+                <?php if($loggedUser->perm == 2):?>
+                    <!-- register button -->
+                    <button id="btn-register" type="button" class="btn btn-primary" data-toggle="modal" data-target="#registerBook">
+                        <div style="font-size: 30px;">+</div>
+                        <div>Novo Cadastro</div>
+                    </button>
+
+                    <!-- this is the modal form -->
+                    <?= $render('register-book-modal') ?>
+
+                    <hr>
                 <?php endif; ?>
 
                 <div class="book-list-area">

@@ -1,8 +1,9 @@
 <?php
 namespace src\handlers;
 
+use PDOException;
 use \src\models\User;
-use \src\handlers\JwtHandler;
+use \src\Config;
 
 class LoginHandler 
 {
@@ -57,7 +58,7 @@ class LoginHandler
     {
         $user = new User();
         $hash = password_hash($password, PASSWORD_DEFAULT);
-        $token = JwtHandler::create(['id_user' => $user->id]);
+        $token = md5(implode(',', range(0, 999)).date('D, d M Y H:i:s'));
 
         # 1 - client profile (default permission)
         # 2 - admin profile
@@ -73,5 +74,30 @@ class LoginHandler
         ])->exec();
 
         return $token;
+    }
+
+    public static function createDefaultAdmin()
+    {
+        $user = new User();
+
+        $count = $user->select()->where('perm','=', 2)->get();
+
+        if(count($count) == 0) {
+            $hash = password_hash(Config::ADMIN_USER_EMAIL, PASSWORD_DEFAULT);
+            $token = md5( implode(',',range(0, 999)).date('D, d M Y H:i:s') );
+    
+            try {
+                $user->insert([
+                    'name' => 'ADMIN_DEFAULT',
+                    'email' => Config::ADMIN_USER_EMAIL,
+                    'password' => $hash,
+                    'token' => $token,
+                    'perm' => 2,
+                    'created_at' => date('Y-m-d')
+                ])->exec();
+            } catch(PDOException $e) {
+                echo 'ERROR: '.$e->getMessage();
+            }
+        }
     }
 }
