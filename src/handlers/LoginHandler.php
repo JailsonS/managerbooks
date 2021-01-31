@@ -38,7 +38,7 @@ class LoginHandler
             return false;
         }
 
-        $token = JwtHandler::create(['id_user' => $user->id]);
+        $token = md5(implode(',', range(0, 999)).date('D, d M Y H:i:s'));
 
         $userInstance->update(['token'=>$token])->where('email', '=', $email)->exec();
 
@@ -83,7 +83,7 @@ class LoginHandler
         $count = $user->select()->where('perm','=', 2)->get();
 
         if(count($count) == 0) {
-            $hash = password_hash(Config::ADMIN_USER_EMAIL, PASSWORD_DEFAULT);
+            $hash = password_hash(Config::ADMIN_USER_PASSWORD, PASSWORD_DEFAULT);
             $token = md5( implode(',',range(0, 999)).date('D, d M Y H:i:s') );
     
             try {

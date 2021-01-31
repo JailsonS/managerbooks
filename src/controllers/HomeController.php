@@ -32,25 +32,39 @@ class HomeController extends Controller
             $_SESSION['flash'] = '';
         }
 
-        # it will be populated
-        $data = [];
-
-        $bookInstance = new Book();
-        $books = $bookInstance->select()
-            ->where('id_user', '=', $this->loggedUser->id)
-        ->get();
-
-        # fill data
-        $data['flash'] = $flash;
-        $data['books'] = $books;
-        $data['loggedUser'] = $this->loggedUser;
-        $data['url'] = Request::getUrl();
-
         switch($this->loggedUser->perm){
             case '1':
+
+                # it will be populated
+                $data = [];
+
+                $bookInstance = new Book();
+                $books = $bookInstance->select()
+                    ->where('id_user', '=', $this->loggedUser->id)
+                ->get();
+
+                # fill data
+                $data['flash'] = $flash;
+                $data['books'] = $books;
+                $data['loggedUser'] = $this->loggedUser;
+                $data['url'] = Request::getUrl();
+
                 $this->render('home', $data);
                 break;
             case '2':
+
+                # it will be populated
+                $data = [];
+
+                $bookInstance = new Book();
+                $books = $bookInstance->select()->get();
+
+                # fill data
+                $data['flash'] = $flash;
+                $data['books'] = $books;
+                $data['loggedUser'] = $this->loggedUser;
+                $data['url'] = Request::getUrl();
+
                 $this->render('library', $data);
                 break;
         }

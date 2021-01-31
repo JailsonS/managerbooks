@@ -18,7 +18,14 @@
             </a>
             <!-- update btn -->
             <a href="#" 
-                class="btn btn-warning btn-sm <?php if($book->id_user !== $loggedUser->id) {echo 'disabled';}?>" 
+                class="btn btn-warning btn-sm <?php 
+                    if($loggedUser->perm == '2') {
+                        echo '';
+                    } 
+                    else if($book->id_user !== $loggedUser->id) {
+                        echo 'disabled';
+                    }
+                ?>" 
                 data-toggle="modal" data-target="#editBook<?php echo '_'.$id_modal?>"
                 style="
                     display: flex; 
@@ -33,7 +40,14 @@
             <!-- delete btn -->
             <a 
                 href="#" 
-                class="btn btn-danger btn-sm <?php if($book->id_user !== $loggedUser->id) {echo 'disabled';}?>" 
+                class="btn btn-danger btn-sm <?php
+                    if($loggedUser->perm == '2') {
+                        echo '';
+                    } 
+                    else if($book->id_user !== $loggedUser->id) {
+                        echo 'disabled';
+                    }
+                ?>" 
                 data-toggle="modal" 
                 data-target="#deleteBook<?php echo '_'.$id_modal?>"
                 style="
