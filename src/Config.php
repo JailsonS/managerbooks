@@ -6,8 +6,8 @@ class Config
 {
     const BASE_DIR = '/managerbooks/public';
     
-    const ERROR_CONTROLLER = '404';
-    const DEFAULT_ACTION = '';
+    const ERROR_CONTROLLER = 'ErrorController';
+    const DEFAULT_ACTION = 'index';
 
     const DB_DRIVER = 'mysql';
     const DB_DATABASE = 'techlead';
