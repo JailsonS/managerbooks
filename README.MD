@@ -11,7 +11,7 @@
 * CLIENT - READ para os registros cadastrados por outros usuários
 
 #### Stack Utilizada
-* PHP puro para o backend versão 8.0.0
+* PHP para o backend versão 8.0.0
 * HTML, CSS, JS e Bootstrap para o frontend
 * Banco de dados MYSQL
 
